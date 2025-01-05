@@ -4,15 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mines Predictor</title>
-
+    <title>Simple Game</title>
     <!-- Preload important resources -->
     <link rel="preload" href="https://i.postimg.cc/CLPW4m8F/IMG-20250104-234342.jpg" as="image">
     <link rel="preload" href="https://i.postimg.cc/fL3RCJ2L/download.png" as="image">
     <link rel="preload" href="css/stakemines.css" as="style">
     <link rel="preload" href="js/stakemines1.js" as="script">
-
-    <!-- Link to external CSS -->
     <style>
         /* General styles */
         body {
@@ -54,6 +51,7 @@
             align-items: start;
             flex-direction: column;
             background-color: #1a2227;
+            margin-bottom: 0; /* Removed extra space below note */
         }
 
         #note h4 {
@@ -82,7 +80,7 @@
             background-size: contain;
         }
 
-        /* Styling start for card */
+        /* Styling for card */
         .card {
             height: 45vw;
             width: 95%;
@@ -128,8 +126,41 @@
         .cardinfo h5 {
             text-align: left;
         }
-    </style>
 
+        /* Footer styles */
+        footer {
+            background-color: #1a2227;
+            width: 100%;
+            text-align: center;
+            padding: 15px 0;
+            position: static; /* Ensure footer is static to avoid overlap */
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #00E700;
+            font-size: 4vw;
+            display: flex;
+            align-items: center;
+        }
+
+        footer img {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+        }
+
+        footer p {
+            color: #fff;
+            font-size: 3vw;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 
 <body>
@@ -157,12 +188,22 @@
         <h4>ONLY WORK IN NEW ACCOUNT</h4>
     </div>
 
+    <!-- Footer with branding -->
+    <footer>
+        <a href="https://instagram.com/stakeminor" target="_blank">
+            <img src="https://img.icons8.com/?size=100&id=32309&format=png&color=000000" alt="Instagram">
+            Instagram
+        </a>
+        <a href="https://t.me/stakeminor" target="_blank">
+            <img src="https://img.icons8.com/?size=100&id=lUktdBVdL4Kb&format=png&color=000000" alt="Telegram">
+            Telegram
+        </a>
+    </footer>
+
     <script>
-        // Selecting grid container and start button
         const gridContainer = document.querySelector('.grid-container');
         const startBtn = document.getElementById('startBtn');
 
-        // Function to create grid items
         function createGridItems() {
             for (let i = 0; i < 25; i++) {
                 const gridItem = document.createElement('div');
@@ -171,7 +212,6 @@
             }
         }
 
-        // Function to get random grid items
         function getRandomItems() {
             const randomIndexes = [];
             while (randomIndexes.length < 4) {
@@ -183,14 +223,12 @@
             return randomIndexes;
         }
 
-        // Function to change selected grid items
         function changeGridItems() {
             const randomIndexes = getRandomItems();
             randomIndexes.forEach(index => {
                 gridContainer.children[index].classList.add('diamond');
             });
 
-            // Reset grid items after 10 seconds
             setTimeout(() => {
                 randomIndexes.forEach(index => {
                     gridContainer.children[index].classList.remove('diamond');
@@ -198,12 +236,10 @@
             }, 10000);
         }
 
-        // Event listener for start button
         startBtn.addEventListener('click', () => {
             changeGridItems();
         });
 
-        // Generate grid items on page load
         createGridItems();
 
         function disable() {
@@ -214,7 +250,7 @@
             setTimeout(function () {
                 x.style.display = "block";
                 y.innerHTML = "";
-            }, 10000); // Delay for 10000 milliseconds (10 seconds)
+            }, 10000);
         }
     </script>
 </body>
